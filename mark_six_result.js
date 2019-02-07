@@ -10,9 +10,11 @@ class MarkSixResult extends React.Component {
     }
 
     getResult() {
+        const url = new URL(window.location.href);
         const from = 1;
         const to = 49;
-        const n = 6;
+        let n = Number(url.searchParams.get("n")) || 6;
+        console.log(n);
         let numList = []
         let result = []
         let len = to - from + 1;
