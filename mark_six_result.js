@@ -8,6 +8,30 @@ class MarkSixResult extends React.Component {
         // this.state = {result : "HELLO"};
         this.state = {result : this.getResult()};
     }
+    /**
+     * generate random number [0,1]
+     *
+     * @returns return a float
+     */
+    getRandom() {
+        const randomBuffer = new Uint32Array(1);
+        window.crypto.getRandomValues(randomBuffer);
+        return randomBuffer[0] / (0xFFFFFFFF + 1);
+    }
+
+    /**
+     * 
+     * generate random number [min,max]
+     * @param min
+     * @param max 
+     * @returns returns an integer
+     */
+    getRandomIntInclusive(min, max) {
+        const minValue = Math.ceil(min);
+        const maxValue = Math.floor(max);
+    
+        return Math.floor(getRandom() * (maxValue - minValue + 1)) + minValue;
+    }
 
     getResult() {
         const url = new URL(window.location.href);
@@ -22,7 +46,8 @@ class MarkSixResult extends React.Component {
             numList.push(i);
         }
         for (let i = 0; i < n; i++) {
-            let rand = Math.floor(Math.random() * len);
+            let rand = getRandomIntInclusive(from, len);
+            // let rand = Math.floor(Math.random() * len);
             result.push(numList[rand]);
             numList[rand] = numList[len - 1];
             len--;
