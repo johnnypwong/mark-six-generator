@@ -30,7 +30,7 @@ class MarkSixResult extends React.Component {
         const minValue = Math.ceil(min);
         const maxValue = Math.floor(max);
     
-        return Math.floor(getRandom() * (maxValue - minValue + 1)) + minValue;
+        return Math.floor(this.getRandom() * (maxValue - minValue + 1)) + minValue;
     }
 
     getResult() {
@@ -46,7 +46,7 @@ class MarkSixResult extends React.Component {
             numList.push(i);
         }
         for (let i = 0; i < n; i++) {
-            let rand = getRandomIntInclusive(from, len);
+            let rand = this.getRandomIntInclusive(from, len);
             // let rand = Math.floor(Math.random() * len);
             result.push(numList[rand]);
             numList[rand] = numList[len - 1];
